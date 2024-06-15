@@ -1,60 +1,35 @@
-
 pipeline{
-    tools{
-        jdk 'myjava'
-        maven 'mymaven'
+    agent any
+    stages{
+        stage('github validation'){
+          steps{
+                 git url: 'https://github.com/akshu20791/addressbook-cicd-project'
+          }
+        }
+        stage('compiling the code'){
+          steps{
+                 sh 'mvn compile'
+          }
+        }
+        stage('testing the code'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+        stage('qa of the code'){
+            steps{
+                sh 'mvn pmd:pmd'
+            }
+        }
+        stage('package'){
+            steps{
+                sh 'mvn package'
+            }
+        }
+        stage("deploy the project on tomcat"){
+            steps{
+                sh "sudo mv /var/lib/jenkins/workspace/mypipeline/target/addressbook.war /home/ubuntu/apache-tomcat-8.5.100/webapps/"
+            }
+        }
     }
-	agent any
-      stages{
-           stage('Checkout'){
-	    
-               steps{
-		 echo 'cloning..'
-                 git 'https://github.com/Sonal0409/DevOpsClassCodes.git'
-              }
-          }
-          stage('Compile'){
-             
-              steps{
-                  echo 'compiling..'
-                  sh 'mvn compile'
-	      }
-          }
-          stage('CodeReview'){
-		  
-              steps{
-		    
-		  echo 'codeReview'
-                  sh 'mvn pmd:pmd'
-              }
-          }
-           stage('UnitTest'){
-		  
-              steps{
-	         echo 'Testing'
-                  sh 'mvn test'
-              }
-               post {
-               success {
-                   junit 'target/surefire-reports/*.xml'
-               }
-           }	
-          }
-           stage('MetricCheck'){
-              
-              steps{
-                  sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
-              }
-              
-          }
-          stage('Package'){
-		  
-              steps{
-		  
-                  sh 'mvn package'
-              }
-          }
-	     
-          
-      }
 }
