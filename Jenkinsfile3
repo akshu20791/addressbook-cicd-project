@@ -39,7 +39,7 @@ pipeline {
         }
         stage("deploy the project") {
             steps {
-                sh "sudo cp /var/lib/jenkins/workspace/mypipeline/target/addressbook.war /home/ubuntu/apache-tomcat-9.0.104/webapps"
+                sh "sudo cp /var/lib/jenkins/workspace/mymultibranchpipeline_master/target/addressbook.war /home/ubuntu/apache-tomcat-9.0.104/webapps"
             }
         }
     }
