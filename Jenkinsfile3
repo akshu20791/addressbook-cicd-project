@@ -8,7 +8,7 @@ pipeline {
                 echo "git checkout done"
             }
         }
-        stage("compile the project") {
+        stage("compile the project akshat") {
             steps {
                 echo "compiling started"
                 sh "mvn compile"
