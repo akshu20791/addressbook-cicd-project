@@ -8,7 +8,9 @@ pipeline {
                 echo "git checkout done"
             }
         }
+
         stage("compiling the project") {
+
             steps {
                 echo "compiling started"
                 sh "mvn compile"
