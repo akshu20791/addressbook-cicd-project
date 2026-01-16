@@ -18,7 +18,7 @@ pipeline{
                 sh 'mvn test'
             }
         }
-        stage("packaging the project"){
+        stage("packaging the project by akshat"){
             steps{
                 sh 'mvn package'
             }
