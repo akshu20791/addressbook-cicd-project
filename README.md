@@ -59,7 +59,7 @@ To checkout and run the project in NetBeans, do:
 
 You should now have a GlassFish server running on localhost:8080 and a browser tab should also be automatically opened with this location
 
-Importing in Eclipse
+Importing in Eclipse / addind some content to trigger the github webhook poll scm
 --------------------
 These instructions were tested on Eclipse IDE for Java EE Developers Luna SR2. You can get it from http://eclipse.org/downloads/
 
