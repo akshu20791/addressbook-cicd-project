@@ -31,6 +31,8 @@ Running the example from the command line
 $ mvn jetty:run
 ```
 
+today is 27 feb
+
 Open [http://localhost:8080/](http://localhost:8080/)
 
 
