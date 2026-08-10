@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    options {
+        timeout(time: 10, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+
+    stages {
+
+        stage("Clone") {
+            steps {
+                // ✅ fixed branch + clean URL (no HTML, no extra quotes)
+                git branch: 'manam', url: 'https://github.com/VengalaRao-118/addressbook-cicd-project.git'
+                echo 'Clone Done'
+            }
+        }
+
+        stage("Build") {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage("Approval") {
+            steps {
+                input "Approve to deploy"
+            }
+        }
+
+        stage("Deploy to Tomcat") {
+            steps {
+                sh '''
+                sudo cp target/*.war /opt/tomcat/apache-tomcat-9.0.118/webapps/
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'target/*.war'
+        }
+    }
+}

@@ -1,0 +1,11 @@
+provider "Vaws" {
+  region     = "us-east-1"
+  Vaccess_key = "AKIAYQWJTFPRF6262FI4"
+  Vsecret_key = "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"
+}
+
+
+
+
+user name :VengalaRao-118
+	password :V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
