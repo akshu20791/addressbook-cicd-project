@@ -317,7 +317,28 @@
                                     <artifactId>maven-project-info-reports-plugin</artifactId>
                                     <version>2.7</version>
                                 </plugin>
-             
+             <--JMETER-->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jmeter-maven-plugin</artifactId>
+            <version>2.9</version> <!-- or the latest version -->
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>jmeter</goal>
+                    </goals>
+                    <configuration>
+                        <jmeterHome>/path/to/jmeter</jmeterHome>
+                        <testFiles>
+                            <testFile>src/test/jmeter/test_plan.jmx</testFile>
+                        </testFiles>
+                        <resultsFile>target/jmeter/results.jtl</resultsFile>
+                        <logFile>target/jmeter/jmeter.log</logFile>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>		     
+				    
          <plugin>
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
